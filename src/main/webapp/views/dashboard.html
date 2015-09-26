@@ -1,0 +1,94 @@
+<h1 class="page-title">Dashboard <small><small>The Lucky One</small></small></h1>
+<div class="row">
+    <div class="col-md-8">
+        <!-- minimal widget consist of .widget class. note bg-transparent - it can be any background like bg-gray,
+        bg-primary, bg-white -->
+        <section class="widget bg-transparent" ng-controller="GeoLocationsWidgetDemoController">
+            <!-- .widget-body is a mostly semantic class. may be a sibling to .widget>header or .widget>footer -->
+            <div class="widget-body">
+                <!-- for this particular example we also need to preload us map, as this is mapael's extension -->
+                <div class="mapael" data-ui-jq="mapael" data-ui-options="mapData" data-ui-preload="['vendor/jQuery-Mapael/js/maps/usa_states.js']">
+                    <div class="stats">
+                        <h5 class="text-white">GEO-LOCATIONS</h5>
+                        <p class="h3 text-warning no-margin"><strong data-animate-number>1 656 843</strong> <i class="fa fa-map-marker"></i></p>
+                    </div>
+                    <div class="map">
+                        <span>Alternative content for the map</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="col-md-4">
+        <section class="widget bg-transparent">
+            <header>
+                <h4>
+                    Map
+                    <span class="fw-semi-bold">Statistics</span>
+                </h4>
+                <div class="widget-controls widget-controls-hover">
+                    <a href="#"><i class="glyphicon glyphicon-cog"></i></a>
+                    <a href="#"><i class="fa fa-refresh"></i></a>
+                    <a href="#" data-widgster="close"><i class="glyphicon glyphicon-remove"></i></a>
+                </div>
+            </header>
+            <div class="widget-body">
+                <p>Status: <strong>Live</strong></p>
+                <p>
+                    <span class="circle bg-warning"><i class="fa fa-map-marker"></i></span>
+                    146 Countries, 2759 Cities
+                </p>
+                <div class="row progress-stats">
+                    <div class="col-sm-9">
+                        <h5 class="name">Foreign Visits</h5>
+                        <p class="description deemphasize">Some Cool Text</p>
+                        <div data-progressbar data-sn-progress-animate data-value="60" class="progress-sm bg-white"></div>
+                    </div>
+                    <div class="col-sm-3 text-align-center">
+                                <span class="status rounded rounded-lg bg-body-light">
+                                    <small><span data-animate-number>75</span>%</small>
+                                </span>
+                    </div>
+                </div>
+                <div class="row progress-stats">
+                    <div class="col-sm-9">
+                        <h5 class="name">Local Visits</h5>
+                        <p class="description deemphasize">P. to C. Conversion</p>
+                        <div data-progressbar data-sn-progress-animate data-value="39" data-type="danger" class="progress-sm bg-white"></div>
+                    </div>
+                    <div class="col-sm-3 text-align-center">
+                                <span class="status rounded rounded-lg bg-body-light">
+                                    <small><span data-animate-number>84</span>%</small>
+                                </span>
+                    </div>
+                </div>
+                <div class="row progress-stats">
+                    <div class="col-sm-9">
+                        <h5 class="name">Sound Frequencies</h5>
+                        <p class="description deemphasize">Average Bitrate</p>
+                        <div data-progressbar data-sn-progress-animate data-value="80" data-type="success" class="progress-sm bg-white"></div>
+                    </div>
+                    <div class="col-sm-3 text-align-center">
+                                <span class="status rounded rounded-lg bg-body-light">
+                                    <small><span data-animate-number>92</span>%</small>
+                                </span>
+                    </div>
+                </div>
+                <h5 class="fw-semi-bold mt">Map Distributions</h5>
+                <p>Tracking: <strong>Active</strong></p>
+                <p>
+                    <span class="circle bg-warning"><i class="fa fa-cog"></i></span>
+                    391 elements installed, 84 sets
+                </p>
+                <div class="input-group mt">
+                    <input type="text" class="form-control" placeholder="Search Map">
+                            <span class="input-group-btn">
+                                <button type="submit" class="btn btn-default">
+                                    <i class="fa fa-search text-gray"></i>
+                                </button>
+                            </span>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

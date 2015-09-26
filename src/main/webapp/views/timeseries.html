@@ -1,0 +1,88 @@
+<ol class="breadcrumb">
+    <li>Home</li>
+    <li class="active">Consumption Analysis</li>
+</ol>
+<h1 class="page-title"><span class="fw-semi-bold">Time Series</span></h1>
+<div data-ng-controller="TimeSeriesController">
+    <div class="row">
+         <form name="form" class="form-inline" ng-submit="submit()">
+        <fieldset>
+            <div class="form-group">
+                <label for="metricName" class="control-label">Metric:</label>
+                <select  id="metricName" class="form-control input-sm"  data-style="btn-default" tabindex="-1"
+                         data-ng-model="selectedMetricName"
+                         data-ng-options="metricName for metricName in metricNames">
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="tagValue" class="control-label">Customer:</label>
+                <select id="tagValue" class="form-control input-sm" data-style="btn-default" data-width="auto" tabindex="-1"
+                        data-ng-model="selectedTagValue"
+                        data-ng-options='tagValue for tagValue in tagValues'>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="aggregator" class="control-label">Aggregate By:</label>
+                <select class="form-control input-sm"  data-style="btn-default" data-width="auto" tabindex="-1" id="aggregator"
+                        data-ng-model="selectedAggregateBy">
+                    <option value="10">Hourly</option>
+                    <option value="5">Daily</option>
+                    <option value="2">Monthly</option>
+                    <option value="1">Yearly</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="startTime">Start time:      </label>
+                <div class="input-group">
+                    <input id="startTime" data-ui-jq="datetimepicker" data-ui-options="{ pickTime: true, autoclose: true}"
+                           data-ng-model="startTime"
+                           data-ng-change="dtChanged(startTime)"
+                           type="text" class="form-control input-sm"/>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="endTime">
+                    End time:
+                </label>
+                <div class="input-group">
+                    <input id="endTime" data-ui-jq="datetimepicker" data-ui-options="{pickTime: true, autoclose: true}"
+                           data-ng-model="endTime"
+                           data-ng-change="dtChanged(endTime)"
+                           type="text" class="form-control input-sm"/>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary" data>Submit</button>
+            </div>
+        </fieldset>
+    </form>
+    </div>
+   <!-- <div class="row" ng-show="form.$submitted">
+        <div class="alert-error" ng-show="!startTime||!endTime">Fields cannot be empty</div>
+    </div>-->
+    <div class="row">
+        <div class="col-sm-4 alert alert-danger alert-dismissable" ng-if="errors.pageError">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            {{errors.pageError}}
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <section class="widget">
+            <header>
+                <div class="widget-controls">
+                    <a data-widgster="expand" title="Expand" href="#"><i class="glyphicon glyphicon-chevron-up"></i></a>
+                    <a data-widgster="collapse" title="Collapse" href="#"><i
+                            class="glyphicon glyphicon-chevron-down"></i></a>
+                    <a href="#" data-widgster="close"><i class="glyphicon glyphicon-remove"></i></a>
+                </div>
+            </header>
+            <div class="widget-body">
+                <highchart id="chart1" config="chartConfig"></highchart>
+            </div>
+        </section>
+    </div>
+</div>
+

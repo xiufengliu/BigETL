@@ -1,0 +1,14 @@
+{
+  "name": "bootstrap-calendar",
+  "homepage": "https://github.com/xero/bootstrap_calendar",
+  "version": "1.0.0",
+  "_release": "1.0.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.0.0",
+    "commit": "9f4e80c7dd82fae10236a33c45d8c768a5a3b082"
+  },
+  "_source": "git://github.com/xero/bootstrap_calendar.git",
+  "_target": "*",
+  "_originalSource": "git://github.com/xero/bootstrap_calendar.git"
+}

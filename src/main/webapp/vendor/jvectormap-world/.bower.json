@@ -1,0 +1,14 @@
+{
+  "name": "jvectormap-world",
+  "_cacheHeaders": {
+    "ETag": "\"50fc59f2-233b9\"",
+    "Last-Modified": "Sun, 20 Jan 2013 20:56:18 GMT",
+    "Content-Length": "144313",
+    "Content-Type": "application/x-javascript"
+  },
+  "_release": "e-tag:50fc59f2-",
+  "main": "index.js",
+  "_source": "http://jvectormap.com/js/jquery-jvectormap-world-mill-en.js",
+  "_target": "*",
+  "_originalSource": "http://jvectormap.com/js/jquery-jvectormap-world-mill-en.js"
+}

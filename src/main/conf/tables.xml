@@ -1,0 +1,236 @@
+<!DOCTYPE tables SYSTEM "http://genormous.googlecode.com/svn/trunk/genormous/doc/tables_1_4.dtd">
+
+<tables>
+	<configuration>
+		<option name="genorm.package" value="org.kairosdb.datastore.h2.orm"/>
+		<option name="genorm.destination" value="src/main/java/org/kairosdb/datastore/h2/orm"/>
+		<option name="genorm.graphvizFile" value="build/tables.dot"/>
+
+		<type_map>
+			<type custom="integer" java="int" db="INT"/>
+			<type custom="long" java="long" db="BIGINT"/>
+			<type custom="double" java="double" db="DOUBLE"/>
+			<type custom="date" java="java.sql.Date" db="DATE"/>
+			<type custom="boolean" java="boolean" db="BOOLEAN"/>
+			<type custom="string" java="String" db="VARCHAR"/>
+			<type custom="timestamp" java="java.sql.Timestamp" db="TIMESTAMP"/>
+			<type custom="binary" java="byte[]" db="BINARY"/>
+			<type custom="money" java="java.math.BigDecimal" db="DECIMAL"/>
+			<type custom="version" java="Double" db="DOUBLE PRECISION"/>
+		</type_map>
+
+		<plugin class="org.agileclick.genorm.plugins.dbsupport.HSQLDB"/>
+	</configuration>
+
+	<table name="metric">
+		<property key="hsqldb_tableType" value="CACHED"/>
+		<col name="id" type="string" primary_key="true">
+			<comment>id is the combination of the name and tags</comment>
+		</col>
+		<col name="name" type="string"/>
+		<col name="type" type="string"/>
+	</table>
+
+	<table name="tagValue">
+		<property key="hsqldb_tableType" value="CACHED"/>
+		<col name="name" type="string" primary_key="true"/>
+		<col name="value" type="string" primary_key="true"/>
+	</table>
+
+	<table name="data_point">
+		<property key="hsqldb_tableType" value="CACHED"/>
+		<!--<col name="id" type="integer" primary_key="true"/>-->
+		<col name="metric_id" type="string" primary_key="true">
+			<reference table="metric" column="id"/>
+		</col>
+		<col name="timestamp" type="timestamp" primary_key="true"/>
+		<col name="value" type="binary"/>
+
+		<table_query name="for_metric_id" result_type="multi">
+			<input>
+				<param name="metric_id" type="string" test="foo"/>
+				<param name="start_time" type="timestamp" test="new java.sql.Timestamp(0L)"/>
+				<param name="end_time" type="timestamp" test="new java.sql.Timestamp(0L)"/>
+			</input>
+			<replace>
+				<param name="order" tagValue="order" type="string" test="asc"/>
+			</replace>
+			<sql>
+				from data_point this
+				where
+				this."metric_id" = ?
+				and this."timestamp" &gt;= ?
+				and this."timestamp" &lt;= ?
+				order by this."timestamp" %order%
+			</sql>
+		</table_query>
+
+		<table_query name="for_metric_id_with_limit" result_type="multi">
+			<input>
+				<param name="metric_id" type="string" test="foo"/>
+				<param name="start_time" type="timestamp" test="new java.sql.Timestamp(0L)"/>
+				<param name="end_time" type="timestamp" test="new java.sql.Timestamp(0L)"/>
+				<param name="limit" type="integer" test="10"/>
+			</input>
+			<replace>
+				<param name="order" tagValue="order" type="string" test="asc"/>
+			</replace>
+			<sql>
+				from data_point this
+				where
+				this."metric_id" = ?
+				and this."timestamp" &gt;= ?
+				and this."timestamp" &lt;= ?
+				order by this."timestamp" %order%
+				limit ?
+			</sql>
+		</table_query>
+	</table>
+
+	<table name="metric_tag">
+		<property key="hsqldb_tableType" value="CACHED"/>
+		<col name="metric_id" type="string" primary_key="true">
+			<reference table="metric" column="id"/>
+		</col>
+		<col name="tag_name" type="string" primary_key="true">
+			<reference table="tagValue" column="name"/>
+		</col>
+		<col name="tag_value" type="string" primary_key="true">
+			<reference table="tagValue" column="value"/>
+		</col>
+	</table>
+
+
+	<!-- ======================================================================= -->
+	<queries>
+		<query name="metric_names">
+			<input>
+			</input>
+			<return>
+				<param name="name" type="string"/>
+			</return>
+			<sql>
+				select distinct "name" from metric
+			</sql>
+		</query>
+
+		<query name="tag_names">
+			<input>
+			</input>
+			<return>
+				<param name="name" type="string"/>
+			</return>
+			<sql>
+				select distinct "name" from tagValue
+			</sql>
+		</query>
+
+		<query name="tag_values">
+			<input>
+			</input>
+			<return>
+				<param name="value" type="string"/>
+			</return>
+			<sql>
+				select distinct "value" from tagValue
+			</sql>
+		</query>
+
+		<query name="metric_ids">
+			<comment>Returns the metric ids for a specified query.  In essence this
+			the initial rows returned.</comment>
+			<input>
+				<param name="metric_name" type="string" test="foo"/>
+			</input>
+			<return>
+				<param name="metric_id" type="string"/>
+				<param name="metric_type" type="string"/>
+			</return>
+			<sql>
+				select m."id" as metric_id, m."type" as metric_type
+				from metric m, metric_tag mt
+				where
+				mt."metric_id" = m."id"
+				and m."name" = ?
+				group by m."id"
+			</sql>
+		</query>
+
+		<query name="metric_ids_with_tags">
+			<comment>Returns the metric ids for a specified query.  In essence this
+			the initial rows returned.  Takes a tags filter</comment>
+			<input>
+				<param name="metric_name" type="string" test="foo"/>
+				<param name="tag_count" type="integer" test="1"/>
+			</input>
+			<replace>
+				<param name="tags" tagValue="tags" type="string" test=""/>
+			</replace>
+			<return>
+				<param name="metric_id" type="string"/>
+				<param name="type" type="string"/>
+			</return>
+			<sql>
+				select m."id" as metric_id, m."type" from metric m, metric_tag mt
+				where
+				mt."metric_id" = m."id"
+				and m."name" = ?
+				%tags%
+				group by m."id" having count(0) = ?
+			</sql>
+		</query>
+
+		<query name="delete_metrics">
+			<comment></comment>
+			<input>
+				<param name="metric_id" type="string" test="foo"/>
+				<param name="start_time" type="timestamp" test="new java.sql.Timestamp(0L)"/>
+				<param name="end_time" type="timestamp" test="new java.sql.Timestamp(0L)"/>
+			</input>
+			<sql>
+				delete from data_point this
+				where
+				this."metric_id" = ?
+				and this."timestamp" &gt;= ?
+				and this."timestamp" &lt;= ?
+			</sql>
+		</query>
+
+		<query name="insert_data_point">
+			<comment>
+				Inserts or updates data point
+			</comment>
+			<input>
+				<param name="metric_id" type="string" test="test_metric"/>
+				<param name="timestamp" type="timestamp" test=""/>
+				<param name="value" type="binary" test=""/>
+			</input>
+			<sql>
+				MERGE INTO data_point ("metric_id", "timestamp", "value") VALUES(?, ?, ?)
+			</sql>
+		</query>
+
+
+		<query name="count_data_points_for_metric">
+			<comment>
+				Counts the data points for a metric query.
+			</comment>
+			<input>
+				<param name="metric_id" type="string" test="foo"/>
+				<param name="start_time" type="timestamp" test="new java.sql.Timestamp(0L)"/>
+				<param name="end_time" type="timestamp" test="new java.sql.Timestamp(0L)"/>
+			</input>
+			<return>
+				<param name="dp_count" type="integer"/>
+			</return>
+			<sql>
+				select count(0) as dp_count
+				from data_point dp
+				where
+				dp."metric_id" = ?
+				and dp."timestamp" &gt;= ?
+				and dp."timestamp" &lt;= ?
+			</sql>
+		</query>
+	</queries>
+</tables>

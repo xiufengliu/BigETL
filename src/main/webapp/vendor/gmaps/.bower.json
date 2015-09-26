@@ -1,0 +1,15 @@
+{
+  "name": "gmaps",
+  "version": "0.4.12",
+  "main": "gmaps.js",
+  "homepage": "https://github.com/HPNeo/gmaps",
+  "_release": "0.4.12",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.4.12",
+    "commit": "740b890145f5c73bb8195d16214a815601743132"
+  },
+  "_source": "git://github.com/HPNeo/gmaps.git",
+  "_target": ">= 0.4.11",
+  "_originalSource": "gmaps"
+}

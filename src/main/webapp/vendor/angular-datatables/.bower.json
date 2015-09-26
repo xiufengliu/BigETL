@@ -1,0 +1,51 @@
+{
+  "name": "angular-datatables",
+  "version": "0.2.0",
+  "author": "l-lin",
+  "main": "dist/angular-datatables.js",
+  "ignore": [
+    ".bowerrc",
+    ".editorconfig",
+    ".git*",
+    ".jshintrc",
+    "Gruntfile.js",
+    "test",
+    "node_modules",
+    "src",
+    ".travis.yml",
+    "vendor",
+    "data.json",
+    "data1.json",
+    "demo",
+    "favicon.png",
+    "index.html",
+    "README.md",
+    "server",
+    "styles",
+    "_config.yml",
+    "grunt",
+    "images",
+    "package.json"
+  ],
+  "dependencies": {
+    "angular": ">=1.2.6",
+    "jquery": ">=1.11.0",
+    "datatables": ">=1.9.4"
+  },
+  "devDependencies": {
+    "angular-mocks": "1.2.6",
+    "bootstrap": "3.0.1",
+    "angular-bootstrap": "0.10.0"
+  },
+  "homepage": "https://github.com/l-lin/angular-datatables",
+  "_release": "0.2.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.2.0",
+    "commit": "57ca58959e35d5dcec121cb1b7a3c3f4c59842fa"
+  },
+  "_source": "git://github.com/l-lin/angular-datatables.git",
+  "_target": "~0.2.0",
+  "_originalSource": "angular-datatables",
+  "_direct": true
+}

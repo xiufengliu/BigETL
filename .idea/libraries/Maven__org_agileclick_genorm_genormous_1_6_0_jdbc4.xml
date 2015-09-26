@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.agileclick.genorm:genormous:1.6.0.jdbc4">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/agileclick/genorm/genormous/1.6.0.jdbc4/genormous-1.6.0.jdbc4.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/agileclick/genorm/genormous/1.6.0.jdbc4/genormous-1.6.0.jdbc4-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/agileclick/genorm/genormous/1.6.0.jdbc4/genormous-1.6.0.jdbc4-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

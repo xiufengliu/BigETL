@@ -1,0 +1,13 @@
+{
+  "name": "to-markdown",
+  "homepage": "https://github.com/domchristie/to-markdown",
+  "_release": "47df7a3f4f",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "47df7a3f4f192a48e6c11f09b0fcacb4a5afc0ff"
+  },
+  "_source": "git://github.com/domchristie/to-markdown.git",
+  "_target": "*",
+  "_originalSource": "git://github.com/domchristie/to-markdown.git"
+}

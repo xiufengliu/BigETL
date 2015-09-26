@@ -1,0 +1,12 @@
+//= require bootstrap/affix
+//= require config/alert
+//= require config/button
+//= require config/carousel
+//= require config/collapse
+//= require config/dropdown
+//= require config/tab
+//= require config/transition
+//= require config/scrollspy
+//= require config/modal
+//= require config/tooltip
+//= require config/popover

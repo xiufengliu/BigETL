@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.sun.jersey.oauth:oauth-signature:1.1.1-ea">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/sun/jersey/oauth/oauth-signature/1.1.1-ea/oauth-signature-1.1.1-ea.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/sun/jersey/oauth/oauth-signature/1.1.1-ea/oauth-signature-1.1.1-ea-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/sun/jersey/oauth/oauth-signature/1.1.1-ea/oauth-signature-1.1.1-ea-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
